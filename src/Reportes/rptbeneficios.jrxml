@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rptbeneficios" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="832" leftMargin="5" rightMargin="5" topMargin="5" bottomMargin="5" uuid="78dd8b92-7bdf-4aef-a8db-79c9f4d45f05">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="mes" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+  MONTH(gastos.`fecha_gasto`) AS mesgasto,
+   MONTH(pago.`fecha_pago`) AS mespago,
+     apartamento.`numero` AS apartamento_numero,
+     apartamento.`Estado` AS apartamento_Estado,
+     apartamento.`tipo_Apartamento` AS apartamento_tipo_Apartamento,
+     gastos.`totalgastado` AS gastos_totalgastado,
+     reserva.`pagado` AS reserva_pagado,
+     apartamento.`idapartamento` AS apartamento_idapartamento,
+     apartamento.`UltimaOcupacion` AS apartamento_UltimaOcupacion,
+     gastos.`fecha_gasto` AS gastos_fecha_gasto,
+     pago.`idpago` AS pago_idpago,
+     pago.`total_pago` AS pago_total_pago,
+     pago.`fecha_pago` AS pago_fecha_pago
+FROM
+     `apartamento` apartamento INNER JOIN `gastos` gastos ON apartamento.`idapartamento` = gastos.`idapartamento`
+     INNER JOIN `reserva` reserva ON apartamento.`idapartamento` = reserva.`idapartamento`
+     INNER JOIN `pago` pago ON reserva.`idReserva` = pago.`idreserva`
+WHERE
+     (MONTH(gastos.`fecha_gasto`) >= MONTH(pago.`fecha_pago`)) and (MONTH( gastos.`fecha_gasto`))=($P{mes})
+GROUP BY
+     apartamento.`idapartamento`]]>
+	</queryString>
+	<field name="mesgasto" class="java.lang.Integer"/>
+	<field name="mespago" class="java.lang.Integer"/>
+	<field name="apartamento_numero" class="java.lang.String"/>
+	<field name="apartamento_Estado" class="java.lang.String"/>
+	<field name="apartamento_tipo_Apartamento" class="java.lang.String"/>
+	<field name="gastos_totalgastado" class="java.math.BigDecimal"/>
+	<field name="reserva_pagado" class="java.math.BigDecimal"/>
+	<field name="apartamento_idapartamento" class="java.lang.Integer"/>
+	<field name="apartamento_UltimaOcupacion" class="java.sql.Date"/>
+	<field name="gastos_fecha_gasto" class="java.sql.Date"/>
+	<field name="pago_idpago" class="java.lang.Integer"/>
+	<field name="pago_total_pago" class="java.math.BigDecimal"/>
+	<field name="pago_fecha_pago" class="java.sql.Date"/>
+	<variable name="reserva_pagado_1" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{reserva_pagado}]]></variableExpression>
+	</variable>
+	<variable name="gastos_totalgastado_1" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{gastos_totalgastado}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="128" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="179" height="119" uuid="0756442a-e8c3-466c-a465-91a1f3964658"/>
+				<imageExpression><![CDATA["C:\\NetBeansProjects\\SistemaReservaBrasilia\\src\\files\\Brasilia13.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="229" y="39" width="403" height="48" forecolor="#0099CC" backcolor="#000000" uuid="cb1ba368-81ba-4638-b462-6993c81af1c9"/>
+				<textElement textAlignment="Center">
+					<font size="36" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Apartamentos Brasilia]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="47" splitType="Stretch">
+			<staticText>
+				<reportElement x="179" y="0" width="373" height="35" forecolor="#0099CC" uuid="33a3ebb9-0d79-4ca9-ba61-87e3f094a96f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="18" isBold="true" isItalic="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Beneficios por Apartamentos en el Mes:]]></text>
+			</staticText>
+			<textField pattern="###0">
+				<reportElement x="552" y="0" width="100" height="35" forecolor="#0099CC" uuid="27e9d91d-81ab-4884-a0a6-51f002bdcb3f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="18" isBold="true" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{mes})]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="42" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement x="0" y="0" width="817" height="37" uuid="1a6112e2-061a-4ecc-a4d3-432dce3cd4c9"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="0" width="63" height="37" uuid="70021fbe-a95e-47eb-ab09-a3cf83949da3"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[#
+Apartto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="79" y="0" width="100" height="37" uuid="dd052b3c-04b9-483e-93b8-e70e07ac2ba9"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tipo_
+Apartamento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="199" y="0" width="85" height="37" uuid="5edcd8f6-caaa-44b0-a6ec-759e7433a93a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Estado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="284" y="0" width="88" height="37" uuid="1ce371ba-d6b2-4f4e-a2af-18c7ef1934d4"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ultima
+Ocupacion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="463" y="0" width="100" height="37" uuid="51221b27-62a8-4d5e-ada7-dd87b135f51b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pagado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="648" y="0" width="80" height="37" uuid="55a62846-85f0-4a90-90b8-2cf0161f89a1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Gastado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="728" y="0" width="80" height="37" uuid="3b295579-53f2-4e52-adc1-1ec93fa5f09b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Beneficios]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="563" y="0" width="85" height="37" uuid="aea6668d-c25e-4b6e-b597-fd8eb669e12f"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha_
+Gasto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="372" y="0" width="91" height="37" uuid="ca2b88b3-4947-45a4-9822-1e6fddff57fe"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha_
+Pago]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="26" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="63" height="20" uuid="19931908-7534-4330-bf49-1aac830cdd4f"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{apartamento_numero}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="79" y="0" width="100" height="20" uuid="5dd799c1-b5d2-42f8-a133-3592272145e9"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{apartamento_tipo_Apartamento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="199" y="0" width="85" height="20" uuid="0501d0f1-42bd-4a80-be81-955705c29553"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{apartamento_Estado}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="284" y="0" width="88" height="20" uuid="20f52593-504c-4ddd-92b6-ff8f78e9d491"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{apartamento_UltimaOcupacion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="463" y="0" width="100" height="20" uuid="b394dbdb-8873-4c89-ae98-1f62cc424c44"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{reserva_pagado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="648" y="0" width="80" height="20" uuid="0d19ab25-0f30-4644-9e0d-ab2b5cef72b9"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{gastos_totalgastado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="728" y="0" width="80" height="20" uuid="66b297ab-1445-4a6a-951a-de8ff5fc5d89"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{reserva_pagado}-$F{gastos_totalgastado})]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="563" y="0" width="85" height="20" uuid="d50270a9-21e9-48dd-bdd8-31c995a80f80"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{gastos_fecha_gasto}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="372" y="0" width="91" height="20" uuid="59970954-ecb1-40d9-a0ec-baca80364219"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pago_fecha_pago}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="33" splitType="Stretch">
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="787" y="3" width="43" height="22" backcolor="#E6E6E6" uuid="719bfffb-8f01-4305-ab7a-3832f0cbe891"/>
+				<textElement>
+					<font size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="0" y="3" width="141" height="22" uuid="75d7f511-0b43-4cb5-8550-4f52e1452d96"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="141" y="3" width="646" height="22" backcolor="#E6E6E6" uuid="a58e99cb-6d0e-4dcb-a724-da753c42e4fb"/>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="136" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement x="573" y="89" width="263" height="34" uuid="a3df29ed-3fd3-41cf-9d92-f236884c4376"/>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement x="346" y="15" width="217" height="34" uuid="fd359f04-2017-4e67-8a79-b9177fead91e"/>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement x="501" y="53" width="227" height="34" uuid="bf8644d4-a887-4286-96d2-d4d4f6f3b582"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="573" y="103" width="116" height="20" uuid="6c38b85e-1a8d-4313-a10a-f071ca6d33ad"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Beneficio Total:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="346" y="29" width="138" height="20" uuid="c9bb54d1-f087-43b0-a0f6-4c1f90a50b65"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Pagado:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="506" y="67" width="142" height="20" uuid="dd0aee91-152d-4227-bee5-2b9fcd37afd7"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Gastado:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="484" y="29" width="79" height="20" uuid="432392e4-ff6e-49a8-90c2-2626a23957bd"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{reserva_pagado_1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="648" y="67" width="80" height="20" uuid="3f0a13e8-be94-4a77-888b-98363ca108e1"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{gastos_totalgastado_1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="728" y="103" width="89" height="20" forecolor="#FF3300" uuid="894d30e2-da42-4c57-8e71-18d48d6a95bf"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{reserva_pagado}-$F{gastos_totalgastado})]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

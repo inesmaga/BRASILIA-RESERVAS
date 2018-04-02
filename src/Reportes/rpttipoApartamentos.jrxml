@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rpttipoApartamentos" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="832" leftMargin="5" rightMargin="5" topMargin="5" bottomMargin="5" uuid="a25ed68c-b41f-4a98-99b2-e4e986fe846a">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="tipo" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     apartamento.`numero` AS apartamento_numero,
+     apartamento.`piso` AS apartamento_piso,
+     apartamento.`Descripcion` AS apartamento_Descripcion,
+     apartamento.`Caracteristicas` AS apartamento_Caracteristicas,
+     apartamento.`preciodbaja` AS apartamento_preciodbaja,
+     apartamento.`preciodalta` AS apartamento_preciodalta,
+     apartamento.`UltimaOcupacion` AS apartamento_UltimaOcupacion,
+     apartamento.`Estado` AS apartamento_Estado,
+     apartamento.`tipo_Apartamento` AS apartamento_tipo_Apartamento
+FROM
+     `apartamento` apartamento
+WHERE
+     (apartamento.`tipo_Apartamento` = $P{tipo}
+     and ((!(apartamento.`Estado` = 'Mantenimiento'))
+     or (!(apartamento.`Estado` = 'Ocupado')))
+ )]]>
+	</queryString>
+	<field name="apartamento_numero" class="java.lang.String"/>
+	<field name="apartamento_piso" class="java.lang.String"/>
+	<field name="apartamento_Descripcion" class="java.lang.String"/>
+	<field name="apartamento_Caracteristicas" class="java.lang.String"/>
+	<field name="apartamento_preciodbaja" class="java.math.BigDecimal"/>
+	<field name="apartamento_preciodalta" class="java.math.BigDecimal"/>
+	<field name="apartamento_UltimaOcupacion" class="java.sql.Date"/>
+	<field name="apartamento_Estado" class="java.lang.String"/>
+	<field name="apartamento_tipo_Apartamento" class="java.lang.String"/>
+	<filterExpression><![CDATA[$F{apartamento_UltimaOcupacion}.before( new java.util.Date() )]]></filterExpression>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="108" splitType="Stretch">
+			<staticText>
+				<reportElement x="211" y="30" width="379" height="43" forecolor="#0099CC" uuid="92cbf6f8-4025-46e8-b56b-6907ab3d87ab"/>
+				<textElement>
+					<font size="34" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Apartamentos Brasilia]]></text>
+			</staticText>
+			<image>
+				<reportElement x="10" y="10" width="120" height="92" uuid="b55590c1-ef07-48be-8849-a749ef187ec3"/>
+				<imageExpression><![CDATA["C:\\NetBeansProjects\\SistemaReservaBrasilia\\src\\files\\Brasilia13.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="110" y="0" width="432" height="35" forecolor="#0099CC" uuid="8399e74b-23a8-4fa3-8fcc-fe25051c1e62"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="18" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Apartamentos Reservables del Tipo:]]></text>
+			</staticText>
+			<textField>
+				<reportElement mode="Opaque" x="544" y="0" width="205" height="35" forecolor="#0099CC" uuid="a9be96ca-99e5-4a6d-b67d-93ea9338a3b8"/>
+				<textElement verticalAlignment="Middle">
+					<font size="18" isBold="true" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tipo}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="54" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement x="0" y="0" width="832" height="47" uuid="a6b3d55e-5ba1-4637-8f96-13ef11fc82dc"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="0" width="67" height="49" uuid="17cc140e-6255-4e44-8a1d-b75465a5de8d"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ #
+Apartto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="67" y="0" width="63" height="49" uuid="279f8498-53f9-4edd-ae21-31d42c424402"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Piso]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="557" y="0" width="75" height="49" uuid="b1e02f69-3de4-4ca1-b2ab-dd8e47bd58f1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Precio-
+T.baja]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="348" y="0" width="209" height="49" uuid="ead5d39a-e389-4852-9d21-d00e7bad4c65"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Caracteristicas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="719" y="0" width="89" height="47" uuid="0a25f3a3-2714-4207-a1b3-74b3bf97d2f5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ultima-
+Ocupacion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="644" y="0" width="60" height="47" uuid="b5f06da6-6d39-428f-adf3-a52b2a9fa1ba"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Precio-
+T.alta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="130" y="0" width="218" height="49" uuid="03403a30-bd0a-4fd5-9654-0cba47fb1451"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Descripcion]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="26" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="67" height="20" uuid="912fe95d-a55b-4cd1-9c3f-a65244af6983"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{apartamento_numero}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="67" y="0" width="63" height="20" uuid="70561351-ccce-462a-8bec-f536b89569dd"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{apartamento_piso}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="130" y="0" width="218" height="20" uuid="bb0b91ff-b010-471f-a58e-4b78d90aa807"/>
+				<textElement textAlignment="Center">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{apartamento_Descripcion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="348" y="0" width="209" height="20" uuid="cf840bda-797a-4e4d-88e6-7d6325df2dec"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{apartamento_Caracteristicas}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="557" y="0" width="75" height="20" uuid="d701b7b6-f741-432f-a56d-ec17da9ebb88"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{apartamento_preciodbaja}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="644" y="0" width="60" height="20" uuid="d510893e-ed6c-476c-933e-b54818e5ec1f"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{apartamento_preciodalta}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="719" y="0" width="89" height="20" uuid="a2e74f41-8dfc-4c25-88f9-0dcdd8d89161"/>
+				<textElement textAlignment="Center">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{apartamento_UltimaOcupacion}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="24" splitType="Stretch">
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="1" y="0" width="129" height="22" uuid="953e6325-5353-4107-9644-6d28cb337337"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="130" y="0" width="660" height="22" backcolor="#E6E6E6" uuid="99c2b11f-e59c-40e8-9fa6-aab713afabdd"/>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="790" y="0" width="42" height="22" backcolor="#E6E6E6" uuid="e570a4cc-5e7f-4827-a847-ace4cb2fbd19"/>
+				<textElement>
+					<font size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="25" splitType="Stretch"/>
+	</summary>
+</jasperReport>

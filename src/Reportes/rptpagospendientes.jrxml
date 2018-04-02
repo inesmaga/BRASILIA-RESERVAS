@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rptpagospendientes" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="832" leftMargin="5" rightMargin="5" topMargin="5" bottomMargin="5" uuid="d23f8ecc-609d-40cf-b8a5-44dfdb1d3aa5">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="69"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\NetBeansProjects\\SistemaReservaBrasilia\\src\\Reportes\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     apartamento.`numero` AS apartamento_numero,
+     reserva.`idReserva` AS reserva_idReserva,
+     reserva.`costo_total` AS reserva_costo_total,
+     reserva.`pagado` AS reserva_pagado,
+     reserva.`pagadore` AS reserva_pagadore,
+     consumo.`precio` AS consumo_precio,
+     consumo.`estado` AS consumo_estado,
+     reserva.`costo_mensual` AS reserva_costo_mensual
+FROM
+     `apartamento` apartamento INNER JOIN `reserva` reserva ON apartamento.`idapartamento` = reserva.`idapartamento`
+     INNER JOIN `consumo` consumo ON apartamento.`idapartamento` = consumo.`idapartamento`
+     AND reserva.`idReserva` = consumo.`idreserva`
+WHERE
+     (!(reserva.`estado` = 'Pagado_Total'))
+     and (!(consumo.`estado` = 'Pagado'))
+group by  reserva.`idReserva`]]>
+	</queryString>
+	<field name="apartamento_numero" class="java.lang.String"/>
+	<field name="reserva_idReserva" class="java.lang.Integer"/>
+	<field name="reserva_costo_total" class="java.math.BigDecimal"/>
+	<field name="reserva_pagado" class="java.math.BigDecimal"/>
+	<field name="reserva_pagadore" class="java.math.BigDecimal"/>
+	<field name="consumo_precio" class="java.math.BigDecimal"/>
+	<field name="consumo_estado" class="java.lang.String"/>
+	<field name="reserva_costo_mensual" class="java.math.BigDecimal"/>
+	<filterExpression><![CDATA[$F{reserva_pagadore}<$F{reserva_costo_total}]]></filterExpression>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="119" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="179" height="119" uuid="fa401ac9-503b-4e03-94b6-2aee14f450b6"/>
+				<imageExpression><![CDATA["C:\\NetBeansProjects\\SistemaReservaBrasilia\\src\\files\\Brasilia13.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="229" y="39" width="403" height="48" forecolor="#0099CC" backcolor="#000000" uuid="e7993bb6-19f5-4708-abd0-1038f3a304d1"/>
+				<textElement textAlignment="Center">
+					<font size="36" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Apartamentos Brasilia]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="220" y="0" width="457" height="35" forecolor="#0099CC" uuid="7c6a9b2a-c95f-41b3-bad4-282ebc63667d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="18" isBold="true" isItalic="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Listado de Pagos Pendientes por Apartamentos]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="45" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement x="2" y="2" width="830" height="38" uuid="be71ce45-fd06-4cf8-b2e7-f20ce9027bd2"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="10" y="2" width="71" height="38" uuid="5ab65b55-5f67-41d6-9fea-a58d132dd886"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[#
+ Reserva]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="81" y="0" width="61" height="38" uuid="9797376d-acf9-48c0-890f-52b074bce401"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ #
+Apartto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="142" y="0" width="78" height="38" uuid="812dd7a9-9ac6-454b-91e7-8649f9bbd15a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Costo_
+Mensual]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="220" y="0" width="64" height="38" uuid="8dc13830-0310-4e15-8bf2-9927f22f96d7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Costo_
+Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="284" y="0" width="72" height="38" uuid="575f6753-7075-4dd8-94df-c8d2db712b82"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pagado_
+Reserva]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="629" y="0" width="100" height="38" uuid="1717fdb0-cf00-46c2-9343-f9e70cc4098a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total_
+Pagado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="356" y="2" width="163" height="36" uuid="5c1691ff-47c2-45a0-9c0a-9b1481df6f2d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Periodo-Consumo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="519" y="2" width="110" height="36" uuid="722cb997-cf8c-4e2c-89b9-915258c9bc63"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Precio-
+Consumo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="729" y="2" width="84" height="36" uuid="4895cf92-5064-4401-a73f-bf0efadbd66b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ A
+Pagar]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="10" y="0" width="71" height="20" uuid="802de17c-e270-40bb-afa0-3cc2d987cf55"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{reserva_idReserva}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="81" y="0" width="61" height="20" uuid="129b84c4-4e7d-4f39-bb64-4515a9460a0f"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{apartamento_numero}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="142" y="0" width="78" height="20" uuid="c0dc9ed9-675f-47b1-934b-e37caf628ca6"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{reserva_costo_mensual}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="220" y="0" width="64" height="20" uuid="f0a1a8ee-77ef-4451-8511-c39ca866c83c"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{reserva_costo_total}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="284" y="0" width="72" height="20" uuid="ca1adce0-e393-49fa-aee0-94b640c97d11"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{reserva_pagadore}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="629" y="0" width="100" height="20" uuid="2fc6e197-336d-4dec-90d2-e01461be083f"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{reserva_pagado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="732" y="0" width="81" height="20" forecolor="#CC0000" uuid="ea828f62-36ad-492e-a50b-675dc2ac9758"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{reserva_costo_total}-$F{reserva_pagadore})]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="139">
+			<subreport>
+				<reportElement x="356" y="0" width="457" height="92" uuid="8b672aeb-7ebe-4d93-9851-342f407c19a3"/>
+				<subreportParameter name="idreserva">
+					<subreportParameterExpression><![CDATA[$F{reserva_idReserva}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "srptconspp.jasper"]]></subreportExpression>
+			</subreport>
+			<line>
+				<reportElement x="10" y="138" width="828" height="1" uuid="ebc5bf8f-cca1-4523-a993-3761ba5cdf09"/>
+			</line>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="27" splitType="Stretch">
+			<textField pattern="dd/MM/yy">
+				<reportElement x="2" y="3" width="141" height="22" uuid="6ccad724-3e91-4b78-98d9-276dc5b760e5"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="789" y="3" width="43" height="22" backcolor="#E6E6E6" uuid="5457894b-168c-4b68-9160-e05f41fe7427"/>
+				<textElement>
+					<font size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="143" y="3" width="646" height="22" backcolor="#E6E6E6" uuid="f278e505-61be-4890-8312-6a6a9aa8ef4d"/>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rrptsolicitudesCalls" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="834" leftMargin="4" rightMargin="4" topMargin="4" bottomMargin="4" uuid="0ac7a36f-6503-4e23-b466-e9e22e6cbdcf">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="74"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+     solicitudescalls.`idllamada` AS solicitudescalls_idllamada,
+     solicitudescalls.`Numllaman` AS solicitudescalls_Numllaman,
+     solicitudescalls.`FechaSol` AS solicitudescalls_FechaSol,
+     solicitudescalls.`idtrabajador` AS solicitudescalls_idtrabajador,
+     solicitudescalls.`tipoA` AS solicitudescalls_tipoA,
+     solicitudescalls.`FechaIngresoDeseada` AS solicitudescalls_FechaIngresoDeseada,
+     solicitudescalls.`FechaSalidaDeseada` AS solicitudescalls_FechaSalidaDeseada,
+     solicitudescalls.`numero` AS solicitudescalls_numero,
+     solicitudescalls.`idSolicitudWeb` AS solicitudescalls_idSolicitudWeb,
+     solicitudescalls.`idcliente` AS solicitudescalls_idcliente,
+     solicitudescalls.`idreserva` AS solicitudescalls_idreserva,
+     solicitudescalls.`Estado` AS solicitudescalls_Estado
+FROM
+     `solicitudescalls` solicitudescalls]]>
+	</queryString>
+	<field name="solicitudescalls_idllamada" class="java.lang.Integer"/>
+	<field name="solicitudescalls_Numllaman" class="java.lang.String"/>
+	<field name="solicitudescalls_FechaSol" class="java.sql.Timestamp"/>
+	<field name="solicitudescalls_idtrabajador" class="java.lang.Integer"/>
+	<field name="solicitudescalls_tipoA" class="java.lang.String"/>
+	<field name="solicitudescalls_FechaIngresoDeseada" class="java.sql.Date"/>
+	<field name="solicitudescalls_FechaSalidaDeseada" class="java.sql.Date"/>
+	<field name="solicitudescalls_numero" class="java.lang.String"/>
+	<field name="solicitudescalls_idSolicitudWeb" class="java.lang.Integer"/>
+	<field name="solicitudescalls_idcliente" class="java.lang.Integer"/>
+	<field name="solicitudescalls_idreserva" class="java.lang.Integer"/>
+	<field name="solicitudescalls_Estado" class="java.lang.String"/>
+	<variable name="solicitudescalls_idllamada_1" class="java.lang.Integer" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{solicitudescalls_idllamada}]]></variableExpression>
+	</variable>
+	<variable name="solicitudescalls_idllamada_2" class="java.lang.Integer" resetType="Column" calculation="Count">
+		<variableExpression><![CDATA[$F{solicitudescalls_idllamada}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="115" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="143" height="103" uuid="0643dbf8-8826-40ff-a8f7-bfe9fc1c5ac5"/>
+				<imageExpression><![CDATA["C:\\NetBeansProjects\\SistemaReservaBrasilia\\src\\files\\Brasilia13.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="159" y="41" width="389" height="48" forecolor="#0099CC" backcolor="#000000" uuid="efd19f92-0f03-41a4-a02d-7bb91dac87d3"/>
+				<textElement>
+					<font size="36" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Apartamentos Brasilia]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="45" splitType="Stretch">
+			<staticText>
+				<reportElement x="193" y="10" width="404" height="33" forecolor="#0099CC" backcolor="#000000" uuid="35ca56c4-1bc4-4fae-8e9d-132bb50cd68b"/>
+				<textElement textAlignment="Center">
+					<font size="22" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Solicitudes de Reservas -- Telefónicas]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="53" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement x="0" y="0" width="834" height="50" uuid="17372946-c090-4892-b8c1-15183c266661"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="0" width="56" height="50" uuid="5426030b-c543-4e18-820b-edb0c2faa556"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID
+llamada]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="56" y="0" width="118" height="50" uuid="8144c664-bc3f-4ced-9256-ed3ee7a6a1d3"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Numero
+llamante]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="176" y="0" width="104" height="50" uuid="121d85d0-96e2-4bc7-b27f-1e6648188af2"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha
+ Llamada:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="0" width="91" height="50" uuid="b9c9436b-23cb-4510-ad81-5f76ff4e7d83"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tipo
+Apto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="371" y="0" width="100" height="50" uuid="2a820a22-25e7-47b7-a86b-d96b5fb736d0"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FechaIngreso
+Deseada]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="471" y="0" width="100" height="50" uuid="ad800fe2-724b-4e6d-b8f0-d8dfcd86db34"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FechaSalida
+Deseada]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="571" y="0" width="44" height="50" uuid="b3ef04ed-cece-4c97-856b-d1c11f6abdbb"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[#
+Aptto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="615" y="0" width="68" height="50" uuid="b15fed01-9dce-4875-aded-e9cd6c8019bd"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[#
+Solicitud
+Web]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="683" y="0" width="57" height="50" uuid="12788ad9-1d11-4f42-b378-d9328bd1d6e2"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[#
+cliente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="752" y="0" width="82" height="50" uuid="e5bdfdc4-cf98-4722-ad52-58510cc34bc7"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[#
+reserva]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="24" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="56" height="20" uuid="f11bd04f-17a6-428e-b4b4-b7b74270e986"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{solicitudescalls_idllamada}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="56" y="0" width="120" height="20" uuid="2342f814-034a-4f0b-bbd1-ebef75dd8e7d"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{solicitudescalls_Numllaman}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="176" y="0" width="104" height="20" uuid="127f3b1c-d6b5-4a6f-a78a-db1bf67f24a1"/>
+				<textElement textAlignment="Center">
+					<font isBold="true" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{solicitudescalls_FechaSol}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="0" width="91" height="20" uuid="9f24a858-c765-4816-8ccb-1ec63d2fa08f"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{solicitudescalls_tipoA}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="371" y="0" width="100" height="20" uuid="67ce94c2-7386-4325-8bac-110b549bfb21"/>
+				<textElement textAlignment="Center">
+					<font isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{solicitudescalls_FechaIngresoDeseada}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="471" y="0" width="100" height="20" uuid="2542178a-6644-425c-8b23-49f2f4336e01"/>
+				<textElement textAlignment="Center">
+					<font size="10" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{solicitudescalls_FechaSalidaDeseada}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="571" y="0" width="44" height="20" uuid="f7d08786-19a6-4188-8a6e-c98b98a7473f"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{solicitudescalls_numero}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="615" y="0" width="68" height="20" uuid="24166b12-9976-430e-8ac8-ce2df875e9fd"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{solicitudescalls_idSolicitudWeb}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="689" y="0" width="51" height="20" uuid="9ed6749f-d102-4445-b42c-53f1664b8978"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{solicitudescalls_idcliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="752" y="0" width="82" height="20" uuid="f4e20475-0856-445a-8048-ca22d63ad63d"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{solicitudescalls_idreserva}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="31" splitType="Stretch">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="0" width="779" height="29" backcolor="#E6E6E6" uuid="a81d8244-a848-4c6b-9e1f-4d8f1f4bbd35"/>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="0" y="4" width="143" height="25" uuid="cb22edc3-8c93-41a2-8415-e07fe6fcfc74"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="779" y="0" width="53" height="29" forecolor="#000000" backcolor="#E6E6E6" uuid="22555f1c-984d-4731-9b44-8b642c33d3ff"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<lastPageFooter>
+		<band height="29">
+			<rectangle radius="10">
+				<reportElement x="571" y="0" width="239" height="26" uuid="1414e5a4-584b-4264-8133-4175718e62dd"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="571" y="0" width="151" height="20" uuid="0550d6d9-5190-49ad-8893-aa86085a5f3a"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total de Llamadas:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="722" y="0" width="88" height="20" uuid="a6e6ce41-606b-45c8-8e52-3093768d8858"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</lastPageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="srptconspp" language="groovy" pageWidth="455" pageHeight="495" orientation="Landscape" columnWidth="445" leftMargin="5" rightMargin="5" topMargin="5" bottomMargin="5" uuid="c42bf7c6-12b9-4d10-8623-1c057f42740f">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idreserva" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     consumo.`idreserva` AS consumo_idreserva,
+     consumo.`periodo` AS consumo_periodo,
+     consumo.`precio` AS consumo_precio,
+     consumo.`estado` AS consumo_estado
+FROM
+     `consumo` consumo
+WHERE
+     (!(consumo.`estado` = 'pagado'))
+     and consumo.`idreserva` = $P{idreserva}]]>
+	</queryString>
+	<field name="consumo_idreserva" class="java.lang.Integer"/>
+	<field name="consumo_periodo" class="java.lang.String"/>
+	<field name="consumo_precio" class="java.math.BigDecimal"/>
+	<field name="consumo_estado" class="java.lang.String"/>
+	<sortField name="consumo_periodo" order="Descending"/>
+	<variable name="consumo_precio_1" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{consumo_precio}]]></variableExpression>
+	</variable>
+	<variable name="consumo_precio_2" class="java.math.BigDecimal" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{consumo_precio}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="26" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="6" width="159" height="20" uuid="1f2f24f5-b17c-4d77-9a04-397c2660a734"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{consumo_periodo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="178" y="6" width="76" height="20" uuid="0df8b76f-d941-4531-a309-2e98a41d1ebc"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{consumo_precio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="383" y="6" width="61" height="20" uuid="50a8901d-a6a4-457d-9a3f-b9c19d1ec862"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{consumo_precio}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="22">
+			<line>
+				<reportElement x="383" y="0" width="61" height="1" uuid="8bcc9cb1-6848-4b14-af6b-83e06fcec171"/>
+			</line>
+			<staticText>
+				<reportElement x="254" y="1" width="111" height="20" uuid="d888eba8-686c-4728-994b-74397f9eb3ca"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[De Consumos:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="383" y="1" width="61" height="20" forecolor="#CC0033" uuid="3bd851bd-76d1-409b-8c5b-45bf36dca97b"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{consumo_precio_2}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band/>
+	</pageFooter>
+</jasperReport>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title><!DOCTYPE html>
+	<html>
+	<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<meta charset="UTF-8"/>
+		<title>SISTEMA DE RESERVAS BRASILIA</title>
+	</head>
+	<body>
+	<p>El Sistema consta de 13 tablas:</p>
+	<p><b>*- Apartamento:</b></p>
+	<p>Contiene los datos propios del<b> Apartamento</b>.(Numero,Piso,Caracteristicas,Descripcion,Tipo_Apartamento,
+	Estado,Ultima_Ocupación,Precio de Temporada Baja,
+	Precio de Temporada Alta.)</p>
+	<p><b>*- Cliente:</b></p>
+	<p>Contiene los datos propios del <b>Cliente</b>.(
+	Codigo del cliente ,idpersona)</p>
+	<p><b>*- Consumo:</b></p>
+	<p>Contiene los datos referentes a los <b>Consumos</b> hechos por los clientes.(
+	reserva,apartamento,periodo,precio,estado.</p>
+	<p><b>*- Correo:</b></p>
+	<p>Contiene los datos referentes a los <b>Correos</b> recibidos de los clientes
+	solicitando reserva de un tipo de apartamento en un rango de fechas.(idcorreo,UsuarioWeb,Asunto,MensajeRE)</p>
+	<p><b>*- Dp:</b></p>
+	<p>Contiene los valores a aplicar en materia de  % por posibles daños y perjuicios segun cantidad de dias de reserva.</p>
+	<p><b>*- Gastos:</b></p>
+	<p>Contiene los datos referentes a los <b>Gastos</b> incurridos  por la gestion.(apartamento,fecha,material,cantidad,reparacion,precio,totalgastado) </p>
+	<p><b>*- Pago:</b></p>
+	<p>Contiene los datos referentes a los <b>Pagos</b> recibidos.(reserva,fechapago,numero comprobante,tipo de comprobante,tipo pago,pago reserva,pago consumo)</p>
+	<p><b>*- Persona:</b></p>
+	<p>Contiene los datos propios de la <b>Persona</b>.(
+	idpersona,nombre,primer apellido,segundo apellido,tipo de documento,número de documento,email,telefono,dirección)</p>
+	<p><b>*- Reserva:</b></p>
+	<p>Contiene los datos referentes a la <b>Reserva</b>.(
+	numero de reserva,numero apartamento,numero de trabajador que realizo la reserva,cliente que hizo la reserva,temporada que abarcará la reserva,fecha de reserva, fecha de ingreso,fecha salida,fecha de inicio de la posible prorroga,idDp,costo mensual, costo total,estado,cuanto se ha pagado en total y cuanto se ha pagado por concepto de reserva.)
+	<p><b>*- Solicitudesweb:</b></p>
+	<p>Contiene los datos referentes a las <b>Solicitudes-Web</b>  enviadas por los clientes a travez de la WEB del Aparthotel.(idsolicitud,idapartamento,numero,tipo,fechaIngresodeseada,fechaSalidadeseada,Estado,Email).</p>
+	<p><b>*- SolicitudesCalls:</b></p>
+	<p>Contiene los datos referentes a las <b>SolicitudesTelefónicas</b>  realizadas por los clientes a travez del telefóno  del Aparthotel.(idllamada,Numllaman,FechaSol,tipoA,fechaIngresodeseada,fechaSalidadeseada,idapartamento,numero,idsolicitudweb,idcliente,idreserva,Estado,idtrabajador).</p>
+	<p><b>*- Trabajador:</b></p>
+	<p>Contiene los datos propios del <b>Trabajador</b>.(
+	idpersona,acceso,estado,login,password)</p>
+	<p><b>*- Temporada:</b></p>
+	<p>Contiene la Temporada de Alquiler asociada a el mes del año.<b>(id,periodotemp,temporada)</b>
+	</body>
+	</html></title>
+</head>
+<body>
+
+</body>
+</html>.

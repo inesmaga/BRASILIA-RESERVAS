@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="consumosTOt" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3eaa105f-dc1c-419b-adcc-94423e95b675">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idreserva" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     consumo.`idreserva` AS consumo_idreserva,
+     consumo.`periodo` AS consumo_periodo,
+     consumo.`precio` AS consumo_precio,
+     pago.`idreserva` AS pago_idreserva,
+     pago.`total_pago` AS pago_total_pago
+FROM
+     `consumo` consumo INNER JOIN `pago` pago ON consumo.`idreserva` = pago.`idreserva`
+where consumo.`idreserva`=$P{idreserva}]]>
+	</queryString>
+	<field name="consumo_idreserva" class="java.lang.Integer"/>
+	<field name="consumo_periodo" class="java.lang.String"/>
+	<field name="consumo_precio" class="java.math.BigDecimal"/>
+	<field name="pago_idreserva" class="java.lang.Integer"/>
+	<field name="pago_total_pago" class="java.math.BigDecimal"/>
+	<variable name="consumo_precio_1" class="java.math.BigDecimal" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{consumo_precio}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="31" splitType="Stretch">
+			<textField>
+				<reportElement x="701" y="0" width="89" height="20" uuid="bb5d832e-e6a1-4d04-94c0-bc25e05d2d3d"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pago_total_pago}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="395" y="0" width="170" height="20" uuid="d584ba6d-23e4-4c3c-84f0-4287c6a49926"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{consumo_periodo}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;###0.00-">
+				<reportElement x="576" y="0" width="125" height="20" uuid="e411bac7-6dbe-49a8-a48e-49764c5f4473"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{consumo_precio}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="51" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement x="644" y="14" width="158" height="31" uuid="19ba129a-4173-4774-b1de-29d326451c81"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="644" y="14" width="99" height="20" uuid="5839ab2d-9e0d-410e-8ac0-0d71c5575fcc"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Pagado:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="743" y="14" width="59" height="20" forecolor="#FF0000" uuid="4648855f-1a70-4d75-9343-f467d96260b0"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{consumo_precio_1}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+</jasperReport>

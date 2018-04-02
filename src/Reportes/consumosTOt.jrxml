@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="consumosTOt" language="groovy" pageWidth="432" pageHeight="495" orientation="Landscape" columnWidth="422" leftMargin="5" rightMargin="5" topMargin="5" bottomMargin="5" uuid="3eaa105f-dc1c-419b-adcc-94423e95b675">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idpago" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     consumo.`idreserva` AS consumo_idreserva,
+     consumo.`precio` AS consumo_precio,
+     consumo.`periodo` AS consumo_periodo,
+     pago.`idreserva` AS pago_idreserva,
+     pago.`total_pago` AS pago_total_pago,
+     pago.`idpago` AS pago_idpago
+FROM
+     `consumo` consumo INNER JOIN `pago` pago ON consumo.`idreserva` = pago.`idreserva`
+     AND pago.`idpago` = consumo.`idpago`
+WHERE
+        pago.`idpago`= $P{idpago} and consumo.`idpago`=$P{idpago}
+]]>
+	</queryString>
+	<field name="consumo_idreserva" class="java.lang.Integer"/>
+	<field name="consumo_precio" class="java.math.BigDecimal"/>
+	<field name="consumo_periodo" class="java.lang.String"/>
+	<field name="pago_idreserva" class="java.lang.Integer"/>
+	<field name="pago_total_pago" class="java.math.BigDecimal"/>
+	<field name="pago_idpago" class="java.lang.Integer"/>
+	<variable name="consumo_precio_1" class="java.math.BigDecimal" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{consumo_precio}]]></variableExpression>
+	</variable>
+	<variable name="consumo_precio_2" class="java.math.BigDecimal" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{consumo_precio}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement x="93" y="0" width="148" height="20" uuid="60c3da88-7808-44c9-9fb2-c8d8b9ca9a7a"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{consumo_periodo}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;###0.00-">
+				<reportElement x="241" y="0" width="76" height="20" uuid="31665672-e10d-4016-9b0c-10fb77eaaebb"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{consumo_precio}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="42" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement x="96" y="5" width="216" height="34" uuid="19ba129a-4173-4774-b1de-29d326451c81"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="108" y="14" width="122" height="20" uuid="5839ab2d-9e0d-410e-8ac0-0d71c5575fcc"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Consumos:]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement x="230" y="14" width="82" height="20" forecolor="#0099CC" uuid="4f8bf7c2-f172-4a70-af20-ed3030178232"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{consumo_precio_2}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+</jasperReport>

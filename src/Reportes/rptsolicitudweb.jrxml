@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rptsolicitudweb" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="832" leftMargin="5" rightMargin="5" topMargin="5" bottomMargin="5" uuid="ed224f34-6417-4ba3-831b-36d4815ecc36">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idsol" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     solicitudesweb.`idsolicitud` AS solicitudesweb_idsolicitud,
+     solicitudesweb.`idapartamento` AS solicitudesweb_idapartamento,
+     solicitudesweb.`numero` AS solicitudesweb_numero,
+     solicitudesweb.`Tipo` AS solicitudesweb_Tipo,
+     solicitudesweb.`FechaIngresoDeseada` AS solicitudesweb_FechaIngresoDeseada,
+     solicitudesweb.`FechaSalidaDeseada` AS solicitudesweb_FechaSalidaDeseada,
+     solicitudesweb.`Estado` AS solicitudesweb_Estado,
+     solicitudesweb.`Email` AS solicitudesweb_Email
+FROM
+     `solicitudesweb` solicitudesweb
+WHERE  solicitudesweb.`idsolicitud`=$P{idsol}]]>
+	</queryString>
+	<field name="solicitudesweb_idsolicitud" class="java.lang.Integer"/>
+	<field name="solicitudesweb_idapartamento" class="java.lang.Integer"/>
+	<field name="solicitudesweb_numero" class="java.lang.String"/>
+	<field name="solicitudesweb_Tipo" class="java.lang.String"/>
+	<field name="solicitudesweb_FechaIngresoDeseada" class="java.sql.Date"/>
+	<field name="solicitudesweb_FechaSalidaDeseada" class="java.sql.Date"/>
+	<field name="solicitudesweb_Estado" class="java.lang.String"/>
+	<field name="solicitudesweb_Email" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="105" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="143" height="103" uuid="6434c072-5e2b-4561-a1e3-595eb8f3dc88"/>
+				<imageExpression><![CDATA["C:\\NetBeansProjects\\SistemaReservaBrasilia\\src\\files\\Brasilia13.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="234" y="26" width="389" height="48" forecolor="#0099CC" backcolor="#000000" uuid="ba8cf362-5494-43ec-b8b2-4e0ddeadde11"/>
+				<textElement>
+					<font size="36" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Apartamentos Brasilia]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="40" splitType="Stretch">
+			<staticText>
+				<reportElement x="234" y="13" width="100" height="20" uuid="16325401-61bf-43c9-88e9-7fc2655709a5"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ # Solicitud Web:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="349" y="13" width="100" height="20" uuid="fcc48e8f-e59b-450f-9f85-4b999a9280eb"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{idsol}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement x="0" y="0" width="801" height="46" uuid="e9b47bbb-2a88-4f6d-bc44-412ea2dcd27e"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="0" width="110" height="32" uuid="5176d66e-23fd-4765-be47-5948a130dabc"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Idapartamento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="110" y="0" width="60" height="46" uuid="8b0c6350-0753-4da9-a625-f6a182da1051"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[#
+ Apto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="170" y="0" width="117" height="46" uuid="afc6c198-9413-4ae7-a5b0-d2cace6e84a3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tipo-Apto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="298" y="0" width="100" height="46" uuid="b4406112-40c8-44b3-ac90-9baca2e7b746"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha
+Ingreso
+Deseada]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="398" y="0" width="100" height="46" uuid="09f63a3a-914f-44d1-a518-a5989cd55cb9"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha
+Salida
+Deseada]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="510" y="0" width="100" height="46" uuid="f2fbb1a1-cd56-4a07-9c58-125de39ff160"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Estado
+Solicitud]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="651" y="0" width="100" height="46" uuid="827f1aa6-9044-4530-b97a-65f62907e94c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Email
+Cliente]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="110" height="20" uuid="00cd407b-6049-4f5d-94a6-b965532a1183"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{solicitudesweb_idapartamento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="110" y="0" width="60" height="20" uuid="80d22439-b0b8-4cf2-9831-d73458d1ceeb"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{solicitudesweb_numero}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="170" y="0" width="117" height="20" uuid="49e2a6c2-1330-46cf-a2dc-b7be43b01879"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{solicitudesweb_Tipo}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="287" y="0" width="111" height="20" uuid="220e15f7-d5b6-481a-9759-d13047ddd698"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{solicitudesweb_FechaIngresoDeseada}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="398" y="0" width="112" height="20" uuid="5eab39db-f21d-443d-ae3e-8e7e9df08948"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{solicitudesweb_FechaSalidaDeseada}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="510" y="0" width="113" height="20" uuid="83b0e8a4-b00b-4ffb-ac5c-f1de962c1985"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{solicitudesweb_Estado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="623" y="0" width="178" height="20" uuid="664b9548-d1ca-4b44-a9df-eb93eb18373d"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{solicitudesweb_Email}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="32" splitType="Stretch">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="0" width="779" height="29" backcolor="#E6E6E6" uuid="9ebcf23f-8154-48b8-8ff9-b4b3100d4841"/>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="0" y="0" width="143" height="25" uuid="4e74fe59-fb5a-454a-ba4d-22b30839c809"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="779" y="0" width="53" height="29" forecolor="#000000" backcolor="#E6E6E6" uuid="18d0ebfd-5597-49f0-997f-935fd98e6fae"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
