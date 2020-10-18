@@ -27,7 +27,7 @@ public class Conexion {
     Connection link=null;
     
         try {
-            Class.forName("org.gjt.mm.mysql.Driver");
+           Class.forName("com.mysql.jdbc.Driver");
             link=DriverManager.getConnection(this.url, this.user, this.pass);
             
             
